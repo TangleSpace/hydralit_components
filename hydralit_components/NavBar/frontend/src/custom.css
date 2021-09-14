@@ -1,0 +1,184 @@
+  i:hover {
+    color: var(--txc_active);
+  }
+
+  #navlogo{
+    color: var(--txc_inactive);
+  }
+  #navlogo:hover{
+    color: var(--txc_active);
+  }
+  .navbar-mainbg{
+    background-color: var(--menu_background);
+    padding: 0px;
+  }
+  #complexnavbarSupportedContent{
+    position: relative;
+  }
+
+  #complexnavbarSupportedContent ul{
+    padding: 0px;
+    margin: 0px;
+  }
+  #complexnavbarSupportedContent ul li a i{
+    margin: 5px;
+  }
+  #complexnavbarSupportedContent li {
+    list-style-type: none;
+    float: center;
+  }
+  #complexnavbarSupportedContent ul li a{
+    color: var(--txc_inactive);
+      text-decoration: none;
+      font-size: auto;
+      display: block;
+      padding: 20px 20px;
+      transition-duration:0.6s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+  }
+  #complexnavbarSupportedContent>ul>li.active>a{
+    color: var(--txc_active);
+    background-color: transparent;
+    transition: all 0.5s;
+  }
+  #complexnavbarSupportedContent a:not(:only-child):after {
+    right: 5px;
+    top: 5px;
+    font-size: auto;
+    display: inline-block;
+    padding-right: 10px;
+    padding-left: 10px;
+    vertical-align: middle;
+    font-weight: 900;
+    transition: 0.5s;
+  }
+  #complexnavbarSupportedContent .active>a:not(:only-child):after {
+    transform: rotate(90deg);
+  }
+  .hori-selector{
+    display:inline-block;
+    position:absolute;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    transition-duration:0.6s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    background-color: var(--option_active);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-top: 10px;
+  }
+  .hori-selector .right,
+  .hori-selector .left{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: var(--option_active);
+    bottom: 10px;
+  }
+  .hori-selector .right{
+    right: -25px;
+  }
+  .hori-selector .left{
+    left: -25px;
+  }
+  .hori-selector .right:before,
+  .hori-selector .left:before{
+    content: '';
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--menu_background);
+  }
+  .hori-selector .right:before{
+    bottom: 0;
+      right: -25px;
+  }
+  .hori-selector .left:before{
+    bottom: 0;
+      left: -25px;
+  }
+  
+  
+  @media(min-width: 992px){
+    .navbar-expand-custom {
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+    }
+    .navbar-expand-custom .navbar-nav {
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+    .navbar-expand-custom .navbar-toggler {
+        display: none;
+    }
+    .navbar-expand-custom .navbar-collapse {
+        display: -ms-flexbox!important;
+        display: flex!important;
+        -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    }
+  }
+  
+  
+  @media (max-width: 991px){
+    #complexnavbarSupportedContent ul li a{
+      padding: 12px 12px;
+    }
+    .hori-selector{
+      margin-top: 0px;
+
+      border-radius: 0;
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+    }
+    .hori-selector .left,
+    .hori-selector .right{
+      right: 0px;
+    }
+    .hori-selector .left{
+      top: -25px;
+      left: auto;
+    }
+    .hori-selector .right{
+      bottom: -25px;
+    }
+    .hori-selector .left:before{
+      left: -25px;
+      top: -25px;
+    }
+    .hori-selector .right:before{
+      bottom: -25px;
+      left: -25px;
+    }
+  }
+
+.navbar-nav > li > .dropdown-menu { 
+    background-color: var(--menu_background);
+    color: var(--txc_active) !important;
+    border-radius: 15px;
+  }
+
+.dropdown-menu > li > a:hover {
+  background-color: var(--option_active);
+  color: var(--txc_active) !important;
+  border-radius: 15px;
+}
+
+.dropdown-menu > li > a:active {
+  background-color: var(--option_active);
+  color: var(--txc_inactive) !important;
+  border-radius: 15px;
+}
+
+.dropdown-menu > li > a:focus {
+  background-color: var(--option_active);
+  color: var(--menu_background) !important;
+  border-radius: 15px;
+}
+
+
