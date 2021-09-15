@@ -22,9 +22,9 @@ const NavBar = (props: ComponentProps) => {
 
   useEffect(() => {Streamlit.setFrameHeight();});
 
-  const delayed_resize = () => setTimeout(() => {
+  const delayed_resize = (wait_time: number) => setTimeout(() => {
     Streamlit.setFrameHeight();
-  }, 1200);
+  }, wait_time);
 
 
   interface MenuItem {
@@ -101,7 +101,8 @@ const NavBar = (props: ComponentProps) => {
     }
 
     setSelectedMenuState(id);  
-    delayed_resize();
+    delayed_resize(1300);
+    delayed_resize(2500);
   }
 
   const create_menu = (item: MenuItem,kid:number, issub:boolean) => {
@@ -116,14 +117,25 @@ const NavBar = (props: ComponentProps) => {
     }
 
     if(Array.isArray(item.submenu)) {
-      return (
-        <li className="nav-item dropdown" key={kid*100}>
-          <a className="nav-link dropdown-toggle"  href={"#_sub"+kid} key={"sub1_"+kid} onClick={()=>toggleSubMenu(item.label)} data-toggle="tooltip" data-placement="top" data-html="true" title={item.ttip}><i className={icon}></i>{label}</a>
-          <ul className={(selected_submenu === item.label && expand_submenu)? "dropdown-menu show" : "dropdown-menu"} >
-            {(item.submenu).map((item: MenuItem,index: number)=>create_submenu(item,index))}
-          </ul>
-        </li>
-      );
+      if(kid === first_select){
+        return (
+          <li className="nav-item dropdown active" key={kid*100}>
+            <a className="nav-link dropdown-toggle"  href={"#_sub"+kid} key={"sub1_"+kid} onClick={()=>toggleSubMenu(item.label)} data-toggle="tooltip" data-placement="top" data-html="true" title={item.ttip}><i className={icon}></i>{label}</a>
+            <ul className={(selected_submenu === item.label && expand_submenu)? "dropdown-menu show" : "dropdown-menu"} >
+              {(item.submenu).map((item: MenuItem,index: number)=>create_submenu(item,index))}
+            </ul>
+          </li>
+        );
+      }else {
+        return (
+          <li className="nav-item dropdown" key={kid*100}>
+            <a className="nav-link dropdown-toggle"  href={"#_sub"+kid} key={"sub1_"+kid} onClick={()=>toggleSubMenu(item.label)} data-toggle="tooltip" data-placement="top" data-html="true" title={item.ttip}><i className={icon}></i>{label}</a>
+            <ul className={(selected_submenu === item.label && expand_submenu)? "dropdown-menu show" : "dropdown-menu"} >
+              {(item.submenu).map((item: MenuItem,index: number)=>create_submenu(item,index))}
+            </ul>
+          </li>
+        );
+      }
     }else {
       return (
         <NavItem menuitem={item} menu_id={kid} isactive={kid === first_select} menu_callback = {toggleSubMenu}/>

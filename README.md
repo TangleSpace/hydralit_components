@@ -26,7 +26,7 @@ Hydralit can be installed from PyPI:
 ```bash
 pip install hydralit_components
 ```
-# New in version 1.0.2
+# New in version 1.0.3
  - Enable sticky menu mode (pin to top of the window)
  - Animated dropdown menu entries to support complex navigation
  - Offline support
