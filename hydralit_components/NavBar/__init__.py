@@ -1,5 +1,6 @@
 import os
 import streamlit as st
+import math
 import streamlit.components.v1 as components
 from hydralit_components import IS_RELEASE
 
@@ -14,25 +15,25 @@ STICKY_NAV_STYLE = """
                     }
 
                     div[data-testid="stToolbar"] {
-                    visibility: hidden;
-                    position: fixed;
+                    display: none;
+                    position: none;
                     }
 
                     div[data-testid="stDecoration"] {
-                    visibility: hidden;
-                    position: fixed;
+                    display: none;
+                    position: none;
                     }
 
                     div[data-testid="stStatusWidget"] {
-                    visibility: hidden;
-                    position: fixed;
+                    display: none;
+                    position: none;
                     }
 
                     #MainMenu {
-                    visibility: hidden;
+                    display: none;
                     }
                     header {
-                    visibility: hidden;
+                    display: none;
                     }
                     </style>
                 """
@@ -45,11 +46,14 @@ else:
     _component_func = components.declare_component("nav_bar", url="http://localhost:3000")
 
 
-def nav_bar(menu_definition, first_select=0, key=None,home_name=None,login_name=None,override_theme=None, sticky_nav=True):
+def nav_bar(menu_definition, first_select=0, key=None,home_name=None,login_name=None,override_theme=None, sticky_nav=True,force_value=None,use_animation=True):
     if sticky_nav:
         st.markdown(STICKY_NAV_STYLE,unsafe_allow_html=True)
 
-    component_value = _component_func(menu_definition=menu_definition, first_select=first_select,key=key,home=home_name,login=login_name,override_theme=override_theme)
+    first_select = math.floor(first_select/10)
+    component_value = _component_func(menu_definition=menu_definition, first_select=first_select,key=key,home=home_name,fvalue=force_value,login=login_name,override_theme=override_theme,use_animation=use_animation)
+
+
     if component_value is None:
         if first_select > len(menu_definition):
             if login_name is not None:
@@ -66,3 +70,4 @@ def nav_bar(menu_definition, first_select=0, key=None,home_name=None,login_name=
                 return menu_definition[(first_select-1)]['label']
     else:
         return component_value
+

@@ -1,26 +1,41 @@
-import {ComponentProps,Streamlit,withStreamlitConnection,} from "streamlit-component-lib"
-import React, {useEffect,useState} from "react"
+import {Streamlit} from "streamlit-component-lib"
+import React, {useState} from "react"
+import { useStreamlit } from "streamlit-component-lib-react-hooks"
 import NavItem from "./NavItem.jsx"
 import NavSubItem from "./NavSubItem.jsx"
 import "./bootstrap.min.css"
 import './custom.css'
 
 
-const NavBar = (props: ComponentProps) => {
-  let menu_items = props.args["menu_definition"];
-  const using_home = props.args['home'];
-  const using_secure = props.args['login'];
-  let first_select = props.args["first_select"];
-  const override_theme = props.args["override_theme"];
-  let sttheme = props.theme;
-  let refresh_size = false;
+const NavBar:React.VFC = () => {
+  const renderData = useStreamlit();
 
   const [expand_state, setExpandState] = useState(false);
   const [selected_submenu, setSelectedMenuState] = useState('');
   const [expand_submenu, setSubMenuState] = useState(false);
   const [block_state, setBlockState] = useState("none");
 
-  useEffect(() => {Streamlit.setFrameHeight();});
+  if (renderData == null) {
+    return null
+  }
+
+  let menu_items = renderData.args["menu_definition"];
+  const using_home = renderData.args['home'];
+  const use_animation = renderData.args['use_animation'];
+  const using_secure = renderData.args['login'];
+  let first_select = renderData.args["first_select"];
+  const override_theme = renderData.args["override_theme"];
+  const comp_key = renderData.args["key"];
+  let force_value = renderData.args["fvalue"];
+  let sttheme = renderData.theme;
+
+  const check_forced = () => {
+    if(force_value){
+      Streamlit.setComponentValue(force_value);
+    }
+
+    return (null);
+  }
 
   const delayed_resize = (wait_time: number) => setTimeout(() => {
     Streamlit.setFrameHeight();
@@ -75,7 +90,7 @@ const NavBar = (props: ComponentProps) => {
 
   const create_submenu = (item: MenuItem,kid:number) => {
       return (
-        <NavSubItem subitem={item} menu_id={kid} submenu_callback = {toggleSubMenu} parent_id ={item.label}/>
+        <NavSubItem subitem={item} menu_id={kid} submenu_callback = {toggleSubMenu} parent_id ={item.label} key={kid}/>
       );
   }
 
@@ -93,16 +108,12 @@ const NavBar = (props: ComponentProps) => {
     if(id === '') {
       setSubMenuState(false);
     }else {
-      if(selected_submenu === id) {
         setSubMenuState(!expand_submenu);
-      } else {
-        setSubMenuState(true);
-      }
     }
 
     setSelectedMenuState(id);  
-    delayed_resize(1300);
-    delayed_resize(2500);
+    Streamlit.setFrameHeight();
+    delayed_resize(250);
   }
 
   const create_menu = (item: MenuItem,kid:number, issub:boolean) => {
@@ -121,7 +132,7 @@ const NavBar = (props: ComponentProps) => {
         return (
           <li className="nav-item dropdown active" key={kid*100}>
             <a className="nav-link dropdown-toggle"  href={"#_sub"+kid} key={"sub1_"+kid} onClick={()=>toggleSubMenu(item.label)} data-toggle="tooltip" data-placement="top" data-html="true" title={item.ttip}><i className={icon}></i>{label}</a>
-            <ul className={(selected_submenu === item.label && expand_submenu)? "dropdown-menu show" : "dropdown-menu"} >
+            <ul className={(selected_submenu === item.label && expand_submenu)? "dropdown-menu show" : "dropdown-menu"} key={kid*103}>
               {(item.submenu).map((item: MenuItem,index: number)=>create_submenu(item,index))}
             </ul>
           </li>
@@ -130,7 +141,7 @@ const NavBar = (props: ComponentProps) => {
         return (
           <li className="nav-item dropdown" key={kid*100}>
             <a className="nav-link dropdown-toggle"  href={"#_sub"+kid} key={"sub1_"+kid} onClick={()=>toggleSubMenu(item.label)} data-toggle="tooltip" data-placement="top" data-html="true" title={item.ttip}><i className={icon}></i>{label}</a>
-            <ul className={(selected_submenu === item.label && expand_submenu)? "dropdown-menu show" : "dropdown-menu"} >
+            <ul className={(selected_submenu === item.label && expand_submenu)? "dropdown-menu show" : "dropdown-menu"} key={kid*103}>
               {(item.submenu).map((item: MenuItem,index: number)=>create_submenu(item,index))}
             </ul>
           </li>
@@ -165,8 +176,24 @@ const NavBar = (props: ComponentProps) => {
   }
 
   const complex_nav = () => {
+    let menu_look = "complexnavbarSupportedContent";
+    let selector = ( <div className="hori-selector">
+                      <div className="left"></div>
+                      <div className="right"></div>
+                    </div>);
+
+    if(use_animation){
+      menu_look = "complexnavbarSupportedContent";
+      selector = ( <div className="hori-selector">
+                        <div className="left"></div>
+                        <div className="right"></div>
+                      </div>);
+    }else{
+      menu_look = "navbarSupportedContent";
+      selector =(<></>);
+    }
     return (    
-      <div>
+      <div key={comp_key}>
       <style>
         {setTheme()}
       </style>
@@ -174,12 +201,9 @@ const NavBar = (props: ComponentProps) => {
         <button className="navbar-toggler" type="button" onClick={()=>toggleNav()} aria-expanded={expand_state}>
           <i className="fas fa-bars text-white"></i>
         </button>
-        <div className="navbar-collapse" id="complexnavbarSupportedContent" style={{display: block_state}}>
+        <div className="navbar-collapse" id={menu_look} style={{display: block_state}}>
             <ul className="navbar-nav">
-              <div className="hori-selector">
-                <div className="left"></div>
-                <div className="right"></div>
-              </div>
+              {selector}
               {addHomeLogin()}
               {menu_items.map((item: MenuItem,index: number)=>create_menu(item,index,false))}
             </ul>
@@ -187,10 +211,11 @@ const NavBar = (props: ComponentProps) => {
           </nav>
     </div>
     );
+    
   }
 
   return complex_nav();
 
 }
 
-export default withStreamlitConnection(NavBar)
+export default NavBar

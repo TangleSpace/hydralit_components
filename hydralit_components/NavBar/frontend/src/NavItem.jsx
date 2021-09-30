@@ -61,8 +61,8 @@ const NavItem = (props) => {
 
       if(is_active) {
         return (
-          <li className="nav-item active" key={kid*99}>
-            <a className="nav-link" href={"#" + kid*99} onClick={()=>onSelect(ret_id)} data-toggle="tooltip" data-placement="top" data-html="true" title={item.ttip}><i className={icon}></i>{label}</a>
+          <li className="nav-item active" key={kid}>
+            <a className="nav-link" href={"#" + kid} onClick={()=>onSelect(ret_id)} data-toggle="tooltip" data-placement="top" data-html="true" title={item.ttip}><i className={icon}></i>{label}</a>
           </li>
         );
       } else {

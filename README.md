@@ -26,6 +26,13 @@ Hydralit can be installed from PyPI:
 ```bash
 pip install hydralit_components
 ```
+# New in version 1.0.4
+ - Can toggle navbar animation on/off
+ - Tighten up the navbar animation
+ - Add over 20 custom loaders that work the same as the built-in spinner
+ - An ability to enable experimental features to allow for previously disallowed code injection (like javascript)
+ - Added a modified version of the existing Streamlit cookie manager to allow for better use in multi-app environments
+
 # New in version 1.0.3
  - Enable sticky menu mode (pin to top of the window)
  - Animated dropdown menu entries to support complex navigation

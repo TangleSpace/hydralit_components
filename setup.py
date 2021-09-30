@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
         
 setuptools.setup(
     name='hydralit_components',
-    version='1.0.3',
+    version='1.0.4',
     description='Components to use with or without the Hydralit package.',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -31,6 +31,7 @@ setuptools.setup(
     ],
     install_requires=[
         'streamlit>=0.67',
+        'bs4',
     ],
     python_requires='>=3.6',
     keywords=[
