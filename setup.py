@@ -31,6 +31,7 @@ setuptools.setup(
     ],
     install_requires=[
         'streamlit>=0.67',
+        'lxml',
         'bs4',
     ],
     python_requires='>=3.6',
