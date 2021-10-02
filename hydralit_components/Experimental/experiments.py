@@ -7,7 +7,7 @@ import bs4
 STREAMLIT_STATIC_PATH = os.path.join(pathlib.Path(st.__path__[0]),'static')
 STREAMLIT_INDEX_HTML = os.path.join(STREAMLIT_STATIC_PATH,'index.html')
 
-def hydralit_experimental(enable_features, inject_scripts=None,inject_styles=None, inject_html=None):
+def hydralit_experimental(enable_features, inject_scripts=None,inject_styles=None, inject_html=None, inject_raw_script=None):
   try:
     if enable_features:
         #---------------injection----------------------------------------------------------------------------------------------------
@@ -18,7 +18,10 @@ def hydralit_experimental(enable_features, inject_scripts=None,inject_styles=Non
         ]
 
         if inject_scripts is not None:
-            new_scripts.append(inject_scripts)
+            if isinstance(inject_scripts,dict):
+                new_scripts.append(inject_scripts)
+            else:
+                new_scripts.extend(inject_scripts)
 
         new_style_sheets =[
         {'crossorigin':"anonymous",'href':"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",'integrity':"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",'rel':"stylesheet"}
@@ -27,7 +30,7 @@ def hydralit_experimental(enable_features, inject_scripts=None,inject_styles=Non
         if inject_styles is not None:
             new_style_sheets.append(new_style_sheets)
         
-        _add_injections(new_scripts,new_style_sheets,inject_html)
+        _add_injections(new_scripts,new_style_sheets,inject_html,inject_raw_script)
     else:
         _remove_injections()
 
@@ -59,7 +62,7 @@ def _remove_injections():
 
         print('Hydralit experimental features disabled.')
 
-def _add_injections(new_scripts,new_style_sheets,custom_html):
+def _add_injections(new_scripts,new_style_sheets,custom_html,inject_raw_script):
     # load the file
     with open(STREAMLIT_INDEX_HTML) as inf:
         txt = inf.read()
@@ -76,6 +79,9 @@ def _add_injections(new_scripts,new_style_sheets,custom_html):
         for sct in new_scripts:
             new_script = soup.new_tag('script', **sct)
             hidden_header.append(new_script)
+
+        if inject_raw_script is not None:           
+            hidden_header.append(soup.new_tag('script').append(inject_raw_script))
         
         # add new stylesheets to heaeder
         for sct in new_style_sheets:

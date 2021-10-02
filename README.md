@@ -2,8 +2,9 @@
 A package of Streamlit components that can be used directly or with the [Hydralit](https://github.com/TangleSpace/hydralit) library.
 
 ## **Current Components**
-### **Hydralit Navbar** <img src="https://github.com/TangleSpace/hydralit_components/raw/main/resources/hydra_nav.png" alt="burger" width="30"/>
-The Hydralit Navbar is a Streamlit component to make a good looking responsive menu for your Streamlit applications that may or may not be using [Hydralit](https://github.com/TangleSpace/hydralit).
+ - ### **Navbar**
+ - ### **Loaders**
+ - ### **Experimental**
 
 <br>
 <p align="center">
@@ -24,9 +25,9 @@ The Hydralit Navbar is a Streamlit component to make a good looking responsive m
 Hydralit can be installed from PyPI:
 
 ```bash
-pip install hydralit_components
+pip install -U hydralit_components
 ```
-# New in version 1.0.4
+# New in version 1.0.5
  - Can toggle navbar animation on/off
  - Tighten up the navbar animation
  - Add over 20 custom loaders that work the same as the built-in spinner
@@ -47,92 +48,156 @@ pip install hydralit_components
  - Use Bootstrap icons or emojis or nothing
  - Configure Response values when clicked
  - Assign tooltips
-<p align="center">
-<img src="https://raw.githubusercontent.com/tanglespace/hydralit_components/master/resources/hydralit_navbar.gif" title="Quick Example" alt="Quick Example", width="100%" height="100%">
 
-### Example
+ # Navbar
+<p align="center">
+<img src="https://github.com/TangleSpace/hydralit_components/blob/main/resources/new_navbar.gif?raw=true" title="Navbar" alt="Navbar", width="100%" height="100%">
+
+
 A very quick example of how to modify the menu items and to show we can put it on the main page, sidebar or within a container, up to you.
 ```python
 import streamlit as st
 import hydralit_components as hc
 
-if __name__ =="__main__":
 
-    st.set_page_config(layout='wide',initial_sidebar_state='collapsed',)
+st.set_page_config(layout='wide',initial_sidebar_state='collapsed',)
 
-    # specify the menu definition we'll stick in the sidebar
-    side_menu_data = [
-        {'icon': "far fa-copy", 'label':"Left End",'ttip':"I'm the Left End tooltip!"}, #can specify an icon from the bootstrap icon library
-        {'icon': "far fa-copy", 'label':"Copy"},
-        {'label':"Chart"}, # the minimum we can specify for a menu item
-        {'id':'special return value here','icon': "far fa-address-book", 'label':"Book"}, #can provide a special id to return when clicked
-        {'icon': "far fa-calendar-alt", 'label':"Calendar"}, #or can let the label be the return value when clicked
-        {'icon':"🐙",'label':"Component",'ttip':"I'm the Component tooltip!"}, # can als use an emoji as the icon
-        {'icon': "fas fa-tachometer-alt", 'label':"Dashboard"},
-        {'label':"Da55shboard"}, # or no icon
-        {'icon':'🤵','label':"Right End"},
-    ]
-
-    # specify the primary menu definition
-    menu_data = [
-        {'icon': "far fa-copy", 'label':"Left End"},
-        {'id':'Copy','icon':"🐙",'label':"Copy"},
-        {'icon': "far fa-chart-bar", 'label':"Chart"},#no tooltip message
-        {'icon': "far fa-address-book", 'label':"Book"},
-        {'id':' Crazy return value 💀','icon': "💀", 'label':"Calendar"},
-        {'icon': "far fa-clone", 'label':"Component"},
-        {'icon': "fas fa-tachometer-alt", 'label':"Dashboard",'ttip':"I'm the Dashboard tooltip!"}, #can add a tooltip message
-        {'icon': "far fa-copy", 'label':"Right End"},
-    ]
-
-    # we can override any part of the primary colors of the menu
-    #over_theme = {'txc_inactive': '#FFFFFF','menu_background':'red','txc_active':'yellow','option_active':'blue'}
-    over_theme = {'txc_inactive': '#FFFFFF'}
-    menu_id = hc.nav_bar(menu_definition=menu_data,home_name='Home',override_theme=over_theme)
-
-    with st.sidebar:
-        side_menu_id = hc.nav_bar(menu_definition=side_menu_data,key='sidetbar',login_name='Login',override_theme=over_theme,first_select=6)
-    
-    #get the id of the menu item clicked
-    st.info(f"{menu_id=}")
-    st.info(f"{side_menu_id=}")
-```
-
-New features such as sitcky navbar and complex nav (dropdown menu items) are easy to use.
-<p align="center">
-<img src="https://raw.githubusercontent.com/tanglespace/hydralit_components/master/resources/hydralit_navbar_new.gif" title="New Features" alt="Quick Example", width="100%" height="100%">
-
-```python
-
+# specify the primary menu definition
 menu_data = [
     {'icon': "far fa-copy", 'label':"Left End"},
     {'id':'Copy','icon':"🐙",'label':"Copy"},
-
-    # dropdown menu items are specified with a 'submenu' key and an array of menu entries
-    {'icon': "fa-solid fa-radar",'label':"Dropdown1", 
-        'submenu':[
-                {'id':' subid11','icon': "fa fa-paperclip", 'label':"Sub-item 1",'ttip':"I'm a sub-menu tooltip!"},
-                {'id':'subid12','icon': "💀", 'label':"Sub-item 2"},
-                {'id':'subid13','icon': "fa fa-database", 'label':"Sub-item 3"}
-            ]
-    },
     {'icon': "far fa-chart-bar", 'label':"Chart"},#no tooltip message
+    {'icon': "far fa-address-book", 'label':"Book"},
     {'id':' Crazy return value 💀','icon': "💀", 'label':"Calendar"},
+    {'icon': "far fa-clone", 'label':"Component"},
     {'icon': "fas fa-tachometer-alt", 'label':"Dashboard",'ttip':"I'm the Dashboard tooltip!"}, #can add a tooltip message
     {'icon': "far fa-copy", 'label':"Right End"},
-
-    # dropdown menu items support all the existing configuration items such as i return value, label, icon, tool tips
-    {'icon': "fa-solid fa-radar",'label':"Dropdown2", 
-        'submenu':[
-                {'label':"Sub-item 1", 'icon': "fa fa-meh"},
-                {'label':"Sub-item 2"},
-                {'icon':'🙉','label':"Sub-item 3",}
-            ]
-    },
 ]
 
-over_theme = {'txc_inactive': '#FFFFFF'}
-menu_id = hc.nav_bar(menu_definition=menu_data,override_theme=over_theme,home_name='Home',login_name='Logout',sticky_nav=True)
+
+menu_id = hc.nav_bar(menu_definition=menu_data)
+
+#get the id of the menu item clicked
+st.info(f"{menu_id=}")
+```
+
+ # HyLoader
+<p align="center">
+<img src="https://github.com/TangleSpace/hydralit_components/blob/main/resources/standard_loaders.gif?raw=true" title="HyLoaders" alt="HyLoaders", width="45%" height="45%">
+<img src="https://github.com/TangleSpace/hydralit_components/blob/main/resources/pretty_loaders.gif?raw=true" title="HyLoaderspretty" alt="HyLoaders", width="45%" height="45%">
+<img src="https://github.com/TangleSpace/hydralit_components/blob/main/resources/pulse_bars.gif?raw=true" title="HyLoaderspretty" alt="HyLoaders", width="100%" height="60%">
+
+
+
+A very quick example of how to use the load to wrap your long running code
+
+```python
+import hydralit_components as hc
+import time
+
+# a dedicated single loader 
+with hc.HyLoader('Now doing loading',hc.Loaders.pulse_bars,):
+    time.sleep(5)
+
+# for 3 loaders from the standard loader group
+with hc.HyLoader('Now doing loading',hc.Loaders.standard_loaders,index=[3,0,5]):
+    time.sleep(5)
+
+# for 1 (index=5) from the standard loader group
+with hc.HyLoader('Now doing loading',hc.Loaders.standard_loaders,index=5):
+    time.sleep(5)
+
+# for 4 replications of the same loader (index=2) from the standard loader group
+with hc.HyLoader('Now doing loading',hc.Loaders.standard_loaders,index=[2,2,2,2]):
+    time.sleep(5)
+```
+
+ # Experimental
+<p align="center">
+<video controls
+    src="https://github.com/TangleSpace/hydralit_components/blob/main/resources/hydrali%20experimental.mp4"
+    width="800px"
+    >
+
+</video>
+
+
+An example of injecting code into the Streamlit application that previously would not have worked. 
+## NOTE: You need to force reload (browser refresh) the entire page after the experiemntal features have been enabled (you will see a notification in the terminal) to ensure the additions have been loaded into the web page.
+
+```python
+import hydralit_components as hc
+import streamlit as st
+
+
+hc.hydralit_experimental(True)
+
+
+modal_code = """
+<div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+Hydralit Components Experimental Demo!
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Modal Popup Form!</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container">
+<h2>Pure JS+HTML Form</h2>
+<form class="form-horizontal" action="/">
+<div class="form-group">
+<label class="control-label col-sm-2" for="email">Email:</label>
+<div class="col-sm-10">
+  <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-sm-2" for="pwd">Password:</label>
+<div class="col-sm-10">          
+  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+</div>
+</div>
+<div class="form-group">        
+<div class="col-sm-offset-2 col-sm-10">
+  <div class="checkbox">
+    <label><input type="checkbox" name="remember"> Remember me</label>
+  </div>
+</div>
+</div>
+<div class="form-group">        
+<div class="col-sm-offset-2 col-sm-10">
+  <button type="submit" class="btn btn-default">Submit</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <button type="button" class="btn btn-primary">Save changes</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+"""
+
+
+st.markdown(modal_code,unsafe_allow_html=True)
+query_param = st.experimental_get_query_params()
+
+if query_param:
+    st.write('We caputred these values from the experimental modal form using Javascript + HTML + Streamlit + Hydralit Components.')
+    st.write(query_param)
 
 ```
 
