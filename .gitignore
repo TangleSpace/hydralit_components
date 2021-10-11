@@ -133,6 +133,7 @@ dmypy.json
 dist
 tester.py
 loader_test.py
+experimental.py
 package-lock.json
 .prettierrc
 build_and_upload_to_twine*

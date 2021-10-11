@@ -78,7 +78,7 @@ menu_data = [
 menu_id = hc.nav_bar(menu_definition=menu_data)
 
 #get the id of the menu item clicked
-st.info(f"{menu_id=}")
+st.info(f"{menu_id}")
 ```
 
  # HyLoader
