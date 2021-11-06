@@ -27,6 +27,17 @@ Hydralit can be installed from PyPI:
 ```bash
 pip install -U hydralit_components
 ```
+# New in version 1.0.6 (navbar updates)
+NOTE: Since everyone complained about the "jumping navbar", it is now pinned to the top of the page, it is no longer sticky. If you want a sticky, non-jumping, with the Streamlit hamburger navbar all in one magical solution, keep asking Streamlit, since they have already stated they are looking to implement this feature themselves and Hydralit and Hydralit Components can go F^%& itself according to the way I've been treated by the Streamlit team. So if you have any issues with the way the navbar works, raise an issue or talk to Streamlit.
+<br><br>
+You can have jumpy navbar that is sticky, or non-jumping navbar that is pinned to the top, ask Streamlit for both.
+
+ - Changed the sticky behaviour (if you want it at the top, like Streamlit ordering, declare it first) NOTE: The `sticky_nav` parameter moves the navbar to the top of the window, use `sticky_mode = 'sticky'` or `sticky_mode = 'pinned'` if you want it to be sticky, but it will be jumpy or pinned and not jumpy. If you want the Streamlit hamburger menu to appear with the navbar use `hide_streamlit_markers=False`
+ - Can co-exist with the Streamlit hamburger menu now, as well as the status indicators (running/stop..)
+ - Improved the centering and appearance
+ - Can toggle the Streamlit markers on/off independantly of the sticky nav setting
+ - Bug fix with intial value with label and id provided (Thanks [Daveography](https://github.com/Daveography)!)
+
 # New in version 1.0.5
  - Can toggle navbar animation on/off
  - Tighten up the navbar animation
@@ -49,9 +60,26 @@ pip install -U hydralit_components
  - Configure Response values when clicked
  - Assign tooltips
 
- # Navbar
+# Navbar Demo
 <p align="center">
 <img src="https://github.com/TangleSpace/hydralit_components/blob/main/resources/new_navbar.gif?raw=true" title="Navbar" alt="Navbar", width="100%" height="100%">
+</p>
+
+ # Navbar Modes
+ ## Pinned Mode
+<p align="center">
+<img src="https://github.com/TangleSpace/hydralit_components/blob/main/resources/pinned_nav_new.gif?raw=true" title="Navbar" alt="Navbar", width="100%" height="100%">
+</p>
+
+ ## Sticky (jumpy) Mode
+<p align="center">
+<img src="https://github.com/TangleSpace/hydralit_components/blob/main/resources/sticky_nav_new?raw=true" title="Navbar" alt="Navbar", width="100%" height="100%">
+</p>
+
+ ## Regular Mode
+<p align="center">
+<img src="https://github.com/TangleSpace/hydralit_components/blob/main/resources/non-sticky_nav_new.gif?raw=true" title="Navbar" alt="Navbar", width="100%" height="100%">
+</p>
 
 
 A very quick example of how to modify the menu items and to show we can put it on the main page, sidebar or within a container, up to you.

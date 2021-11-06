@@ -45,7 +45,7 @@
   }
   #complexnavbarSupportedContent a:not(:only-child):after {
     right: 5px;
-    top: 5px;
+    top: 0px;
     font-size: auto;
     display: inline-block;
     padding-right: 10px;

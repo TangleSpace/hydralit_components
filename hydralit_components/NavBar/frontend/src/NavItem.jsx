@@ -61,13 +61,13 @@ const NavItem = (props) => {
 
       if(is_active) {
         return (
-          <li className="nav-item active" key={kid}>
+          <li className="nav-item active py-0" key={kid}>
             <a className="nav-link" href={"#" + kid} onClick={()=>onSelect(ret_id)} data-toggle="tooltip" data-placement="top" data-html="true" title={item.ttip}><i className={icon}></i>{label}</a>
           </li>
         );
       } else {
         return (
-          <li className="nav-item" key={kid}>
+          <li className="nav-item py-0" key={kid}>
             <a className="nav-link" href={"#" + kid} onClick={()=>onSelect(ret_id)} data-toggle="tooltip" data-placement="top" data-html="true" title={item.ttip}><i className={icon}></i>{label}</a>
           </li>
         );

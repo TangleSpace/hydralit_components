@@ -130,7 +130,7 @@ const NavBar:React.VFC = () => {
     if(Array.isArray(item.submenu)) {
       if(kid === first_select){
         return (
-          <li className="nav-item dropdown active" key={kid*100}>
+          <li className="nav-item py-0 dropdown active" key={kid*100}>
             <a className="nav-link dropdown-toggle"  href={"#_sub"+kid} key={"sub1_"+kid} onClick={()=>toggleSubMenu(item.label)} data-toggle="tooltip" data-placement="top" data-html="true" title={item.ttip}><i className={icon}></i>{label}</a>
             <ul className={(selected_submenu === item.label && expand_submenu)? "dropdown-menu show" : "dropdown-menu"} key={kid*103}>
               {(item.submenu).map((item: MenuItem,index: number)=>create_submenu(item,index))}
@@ -139,7 +139,7 @@ const NavBar:React.VFC = () => {
         );
       }else {
         return (
-          <li className="nav-item dropdown" key={kid*100}>
+          <li className="nav-item py-0 dropdown" key={kid*100}>
             <a className="nav-link dropdown-toggle"  href={"#_sub"+kid} key={"sub1_"+kid} onClick={()=>toggleSubMenu(item.label)} data-toggle="tooltip" data-placement="top" data-html="true" title={item.ttip}><i className={icon}></i>{label}</a>
             <ul className={(selected_submenu === item.label && expand_submenu)? "dropdown-menu show" : "dropdown-menu"} key={kid*103}>
               {(item.submenu).map((item: MenuItem,index: number)=>create_submenu(item,index))}
@@ -155,7 +155,7 @@ const NavBar:React.VFC = () => {
   }
 
   const setTheme = () => {
-    let merged_theme = {'menu_background': '#F0F2F6','txc_inactive': '#FFFFFF','txc_active': '#FFFFFF','option_active': '#F63366'};
+    let merged_theme = {'menu_background': '#F0F2F6','txc_inactive': '#FFFFFF','txc_active': '#FFFFFF','option_active': '#F63366', 'padding-top': '0rem'};
 
     if(sttheme) {
       merged_theme.menu_background = sttheme.primaryColor;
@@ -197,12 +197,12 @@ const NavBar:React.VFC = () => {
       <style>
         {setTheme()}
       </style>
-      <nav className="navbar navbar-expand-custom navbar-mainbg w-100">
+      <nav className="navbar navbar-expand-custom navbar-mainbg w-100 py-0 py-md-0">
         <button className="navbar-toggler" type="button" onClick={()=>toggleNav()} aria-expanded={expand_state}>
           <i className="fas fa-bars text-white"></i>
         </button>
         <div className="navbar-collapse" id={menu_look} style={{display: block_state}}>
-            <ul className="navbar-nav">
+            <ul className="navbar-nav py-0">
               {selector}
               {addHomeLogin()}
               {menu_items.map((item: MenuItem,index: number)=>create_menu(item,index,false))}
