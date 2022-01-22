@@ -34,8 +34,12 @@ pip install -U hydralit_components
 <img src="https://github.com/TangleSpace/hydralit_components/blob/main/resources/non-animated_navbar.PNG?raw=true" title="Navbar" alt="Navbar", width="100%" height="100%">
 </p>
 
- - Removed the backgroudn effort on all loaders (as everyone hated it).
+ - Removed the background effect on all loaders (as everyone hated it).
  - Can completely customise the Home and Logout entries on the Navbar as well as the other entires.
+<p align="center">
+<img src="https://github.com/TangleSpace/hydralit_components/blob/main/resources/customised_navbar.PNG?raw=true" title="Navbar" alt="Navbar", width="100%" height="100%">
+</p>
+
  - Full support for Font Awesome and BootStrap icons offline for Navbar entries, as well as all emojis.
  - Full support for all versions of Streamlit up to current (1.4.0).
 <br><br>
