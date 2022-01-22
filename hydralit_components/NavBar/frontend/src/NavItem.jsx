@@ -56,7 +56,7 @@ const NavItem = (props) => {
         label = item.icon + " " + item.label;
       } else {
         icon = item.icon;
-        label = item.label;
+        label = " " + item.label;
       }
 
       if(is_active) {

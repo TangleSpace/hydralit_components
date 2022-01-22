@@ -421,14 +421,7 @@ SHOWCASE_GLOBAL_STYLES = """
     width: 100%;
     height: ||-height-||;
     z-index: 999;
-    }
-    *:before,
-    *:after {
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }            
+    }         
     .container {
         text-align: center;
         z-index: 998;
@@ -441,9 +434,6 @@ SHOWCASE_GLOBAL_STYLES = """
         min-height: 215px;
         vertical-align: top;
         margin: 1%;
-        border-radius: 5px;
-        -webkit-box-shadow: 0px 0px 30px 1px #103136 inset;
-                box-shadow: 0px 0px 30px 1px #103136 inset;
     }
 
 @media only screen and (max-width: 600px) {
@@ -2373,15 +2363,7 @@ def point_line(**kargs):
         width: 100%;
         height: ||-height-||;
         z-index: 999;
-        }
-        *,
-        *:before,
-        *:after {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }            
+        }          
         .container {
             text-align: center;
             z-index: 999;
@@ -2513,7 +2495,7 @@ def point_line(**kargs):
         </div>
     """
 
-    return point_lines,outer_style+ point_line_style
+    return point_lines,point_line_style
 
 def grid_points(**kargs):
     outer_style = """
@@ -2526,15 +2508,7 @@ def grid_points(**kargs):
         width: 100%;
         height: ||-height-||;
         z-index: 999;
-        }
-        *,
-        *:before,
-        *:after {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }            
+        }           
         .container {
             text-align: center;
             z-index: 999;
@@ -2645,7 +2619,7 @@ def grid_points(**kargs):
         </div>
         """
 
-    return spotted_div, outer_style+spotted_div_style
+    return spotted_div, spotted_div_style
 
 def pulse_bars(**kargs):
     outer_style = """
@@ -2667,15 +2641,7 @@ def pulse_bars(**kargs):
         left: 10%;
         height: ||-height-||;
         z-index: 90;
-        }
-        *,
-        *:before,
-        *:after {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }            
+        }          
         .container {
             text-align: center;
             z-index: 999;
@@ -2765,7 +2731,7 @@ def pulse_bars(**kargs):
             </div>
         </div>
         """
-    return spinner_div,outer_style+spinner_div_style
+    return spinner_div,spinner_div_style
 
 def pacman_loader(**kargs):
     pacman_style = """
@@ -2787,15 +2753,7 @@ def pacman_loader(**kargs):
         left: 40%;
         height: ||-height-||;
         z-index: 90;
-        }
-        *,
-        *:before,
-        *:after {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }            
+        }         
         .container {
             text-align: center;
             z-index: 999;
@@ -3231,15 +3189,7 @@ def standard_loaders(index=0):
         text-align: center;
         width: 100%;
         z-index: 999;
-        }
-        *,
-        *:before,
-        *:after {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }            
+        }          
         .container {
             text-align: center;
             z-index: 999;
@@ -3248,10 +3198,6 @@ def standard_loaders(index=0):
             width: 30%;
             display: inline-block;
             text-align: center;
-            margin: 1%;
-            border-radius: 5px;
-            -webkit-box-shadow: 0px 0px 30px 1px #103136 inset;
-                    box-shadow: 0px 0px 30px 1px #103136 inset;
         }
         </style>
     """

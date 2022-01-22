@@ -22,18 +22,19 @@
     margin: 0px;
   }
   #complexnavbarSupportedContent ul li a i{
-    margin: 5px;
+    margin: 0px;
   }
   #complexnavbarSupportedContent li {
     list-style-type: none;
     float: center;
   }
+
   #complexnavbarSupportedContent ul li a{
     color: var(--txc_inactive);
       text-decoration: none;
       font-size: auto;
       display: block;
-      padding: 20px 20px;
+      padding: 1rem 1rem;
       transition-duration:0.2s;
     transition-timing-function: cubic-bezier(0.23, -0.18, 0.09, 0.52);
       position: relative;
@@ -161,25 +162,25 @@
 .navbar-nav > li > .dropdown-menu { 
     background-color: var(--menu_background);
     color: var(--txc_active) !important;
-    border-radius: 15px;
+    border-radius: 25px;
   }
 
 .dropdown-menu > li > a:hover {
   background-color: var(--option_active);
   color: var(--txc_active) !important;
-  border-radius: 15px;
+  border-radius: 25px;
 }
 
 .dropdown-menu > li > a:active {
   background-color: var(--option_active);
   color: var(--txc_inactive) !important;
-  border-radius: 15px;
+  border-radius: 25px;
 }
 
 .dropdown-menu > li > a:focus {
   background-color: var(--option_active);
   color: var(--menu_background) !important;
-  border-radius: 15px;
+  border-radius: 25px;
 }
 
 #navbarSupportedContent{
@@ -187,26 +188,36 @@
 }
 
 #navbarSupportedContent ul{
-  padding: 0px;
+  padding: 0rem;
+  margin: 0rem;
+}
+
+#navbarSupportedContent ul li a i{
   margin: 0px;
 }
-#complexnavbarSupportedContent ul li a i{
-  margin: 5px;
-}
+
 #navbarSupportedContent li {
   list-style-type: none;
   float: center;
 }
+
 #navbarSupportedContent ul li a{
   color: var(--txc_inactive);
   text-decoration: none;
   font-size: auto;
   display: block;
-  padding: 20px 20px;
+  padding: 1rem 1rem;
   position: relative;
 }
+
 #navbarSupportedContent>ul>li.active>a{
   color: var(--txc_active);
   background-color: var(--option_active);
-  border-radius: 15px;
+  text-decoration: none;
+  font-size: auto;
+  display: block;
+  position: relative;
+  border-radius: 25px;
+  margin: 0.5rem 0rem 0rem 0rem;
+  padding: 0.5rem 0.5rem;
 }

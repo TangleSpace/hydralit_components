@@ -27,6 +27,19 @@ Hydralit can be installed from PyPI:
 ```bash
 pip install -U hydralit_components
 ```
+# New in version 1.0.7 
+
+ - More visual appearence improvements for the Navbar, including a much nicer non-animated mode.
+ <p align="center">
+<img src="https://github.com/TangleSpace/hydralit_components/blob/main/resources/non-animated_navbar.PNG?raw=true" title="Navbar" alt="Navbar", width="100%" height="100%">
+</p>
+
+ - Removed the backgroudn effort on all loaders (as everyone hated it).
+ - Can completely customise the Home and Logout entries on the Navbar as well as the other entires.
+ - Full support for Font Awesome and BootStrap icons offline for Navbar entries, as well as all emojis.
+ - Full support for all versions of Streamlit up to current (1.4.0).
+<br><br>
+
 # New in version 1.0.6 (navbar updates)
 NOTE: Since everyone complained about the "jumping navbar", it is now pinned to the top of the page, it is no longer sticky. If you want a sticky, non-jumping, with the Streamlit hamburger navbar all in one magical solution, keep asking Streamlit, since they have already stated they are looking to implement this feature themselves and Hydralit and Hydralit Components can go F^%& itself according to the way I've been treated by the Streamlit team. So if you have any issues with the way the navbar works, raise an issue or talk to Streamlit.
 <br><br>

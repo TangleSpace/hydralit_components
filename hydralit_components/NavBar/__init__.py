@@ -10,12 +10,11 @@ PINNED_NAV_STYLE = """
                         padding-top: 0rem;
                     }
                     .reportview-container .main .block-container {
-                        padding-top: 0rem;
-                        padding-right: 4rem;
-                        padding-left: 4rem;
-                        padding-bottom: 4rem;
+                        padding-top: 1rem;
+                        padding-right: 1rem;
+                        padding-left: 1rem;
+                        padding-bottom: 0rem;
                     }
-
                     </style>
                 """
 
@@ -28,33 +27,39 @@ STICKY_NAV_STYLE = """
                         box-sizing: border-box;
                         top: 0;
                     }
+                    </style>
                 """
 
 HIDE_ST_STYLE = """
-                    <style>
-                    div[data-testid="stToolbar"] {
-                    display: none;
-                    position: none;
-                    }
-
-                    div[data-testid="stDecoration"] {
-                    display: none;
-                    position: none;
-                    }
-
-                    div[data-testid="stStatusWidget"] {
-                    display: none;
-                    position: none;
-                    }
-
-                    #MainMenu {
-                    display: none;
-                    }
-                    header {
-                    display: none;
-                    }
-
-                    </style>
+                <style>
+                div[data-testid="stToolbar"] {
+                visibility: hidden;
+                height: 0%;
+                position: fixed;
+                }
+                div[data-testid="stDecoration"] {
+                visibility: hidden;
+                height: 0%;
+                position: fixed;
+                }
+                div[data-testid="stStatusWidget"] {
+                visibility: hidden;
+                height: 0%;
+                position: fixed;
+                }
+                #MainMenu {
+                visibility: hidden;
+                height: 0%;
+                }
+                header {
+                visibility: hidden;
+                height: 0%;
+                }
+                footer {
+                visibility: hidden;
+                height: 0%;
+                }
+                </style>
                 """
 
 if IS_RELEASE:
@@ -65,10 +70,34 @@ else:
     _component_func = components.declare_component("nav_bar", url="http://localhost:3000")
 
 
-def nav_bar(menu_definition, first_select=0, key=None,home_name=None,login_name=None,override_theme=None, sticky_nav=True,force_value=None,use_animation=True,hide_streamlit_markers=True,sticky_mode='pinned'):
+def nav_bar(menu_definition, first_select=0, key=None,home_name=None,login_name=None,override_theme=None, sticky_nav=True,force_value=None,use_animation=True,hide_streamlit_markers=True,sticky_mode='pinned', option_menu=False):
 
     first_select = math.floor(first_select/10)
-    component_value = _component_func(menu_definition=menu_definition, first_select=first_select,key=key,home=home_name,fvalue=force_value,login=login_name,override_theme=override_theme,use_animation=use_animation)
+
+    if type(home_name) is str:
+        home_data = {'id': home_name, 'label': home_name, 'icon': "fa fa-home", 'ttip': home_name}
+    else:
+        home_data = home_name
+
+
+    if type(login_name) is str:
+        login_data = {'id': login_name, 'label': login_name, 'icon': "fa fa-user-circle", 'ttip': login_name}
+    else:
+        login_data = login_name
+
+    
+    if option_menu:
+        max_len = 0
+        for mitem in menu_definition:
+            label_len = len(mitem.get('label',''))
+            if label_len > max_len:
+                max_len = label_len
+
+        for i, mitem in enumerate(menu_definition):
+            menu_definition[i]['label'] = f"{mitem.get('label',''):^{max_len+10}}"
+    
+
+    component_value = _component_func(menu_definition=menu_definition, first_select=first_select,key=key,home=home_data,fvalue=force_value,login=login_data,override_theme=override_theme,use_animation=use_animation)
 
     if sticky_nav:
         if sticky_mode == 'pinned':
@@ -92,14 +121,14 @@ def nav_bar(menu_definition, first_select=0, key=None,home_name=None,login_name=
 
         else:
             if first_select == 0:
-                return home_name
+                return home_data.get('id')
             else:
                 menu_item = menu_definition[(first_select-1)]
 
         if 'id' in menu_item:
-            return menu_item['id']
+            return menu_item.get('id')
         else:
-            return menu_item['label']
+            return menu_item.get('label')
     else:
         return component_value
 

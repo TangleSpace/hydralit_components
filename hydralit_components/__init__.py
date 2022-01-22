@@ -1,5 +1,5 @@
-__version__ = 106
-__packagename__ = 'Hydralit_components'
+__version__ = 107
+__packagename__ = 'hydralit_components'
 __author__ = 'Jackson Storm'
 
 IS_RELEASE = True

@@ -52,11 +52,43 @@ const NavBar:React.VFC = () => {
 
   const addHomeLogin = () => {
     if(using_home) {
-      menu_items = [{id: using_home, label: null, icon: "fa fa-home", ttip: using_home},...menu_items];
+      let label = "";
+      let icon ="";
+      let hlabel ="";
+      
+
+      if(using_home.label){
+          hlabel = using_home.label;
+      }
+
+      if(containsEmojis(using_home.icon)) {
+
+        label = using_home.icon + " " + hlabel;
+      } else {
+        icon = using_home.icon;
+        label = " " + hlabel;
+      }
+
+      menu_items = [{id: using_home.id, label: label, icon: icon, ttip: using_home.ttip},...menu_items];
     }
 
     if(using_secure) {
-      menu_items = [...menu_items,{id: using_secure, label: null, icon: "fa fa-user-circle", ttip: using_secure}];
+      let label = "";
+      let icon ="";
+      let slabel = "";
+
+      if(using_secure.label){
+        slabel = using_secure.label;
+      }
+
+      if(containsEmojis(using_secure.icon)) {
+        label = using_secure.icon + " " + slabel;
+      } else {
+        icon = using_secure.icon;
+        label = " " + slabel;
+      }
+
+      menu_items = [...menu_items,{id: using_secure.id, label: label, icon: icon, ttip: using_secure.ttip}];
     }
   }
 
@@ -124,7 +156,7 @@ const NavBar:React.VFC = () => {
       label = item.icon + " " + item.label;
     } else {
       icon = item.icon;
-      label = item.label;
+      label = " " + item.label;
     }
 
     if(Array.isArray(item.submenu)) {
