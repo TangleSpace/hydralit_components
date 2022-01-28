@@ -29,9 +29,10 @@ setuptools.setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10'
     ],
     install_requires=[
-        'streamlit>=0.67',
+        'streamlit>=0.86',
         'lxml',
         'bs4'
     ],

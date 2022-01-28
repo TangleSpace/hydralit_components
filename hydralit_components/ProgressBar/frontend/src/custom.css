@@ -1,0 +1,33 @@
+.progressbar {
+width: var(--progress-value); 
+height: auto;
+text-align: left;
+border: None;
+background-color: var(--progress-color);
+justify-content: center;
+align-items: center;
+}
+
+.content {
+  font-size: 1rem;
+  color: var(--content-color);
+  border: None;
+  padding: 0rem 0.5rem;
+  overflow: visible;
+  white-space: nowrap;
+  text-overflow: string;
+  justify-content: center;
+  vertical-align: center;
+  align-items: center;
+  }
+
+.w3-light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{
+  color:#000!important;
+  border: None;
+  background-color:var(--bgcolor)!important;
+}
+
+.parent {
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}

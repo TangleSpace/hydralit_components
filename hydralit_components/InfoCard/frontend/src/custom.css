@@ -1,0 +1,80 @@
+.card {
+    background-color: var(--bgcolor);
+    border-radius: 0px;
+    border: 1px solid var(--border-color);
+    box-sizing: border-box;
+    min-height: 8rem;
+    height: auto;
+}
+
+.title-style {
+  color: var(--title-color);
+}
+.card-title {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+    text-align: left;
+    justify-content:top;
+    align-items: top;
+    vertical-align: top;
+    font-size: 1.5rem;
+}
+
+.card-content {
+    font-style: normal;
+    font-weight: normal;
+    color: var(--content-color);
+    text-decoration: none;
+    padding: 0rem 0rem;
+    vertical-align: top;
+    font-size: 1.2rem;
+    min-height: 5rem;
+    height: auto;
+    width: auto;
+}
+
+.content-row {
+  align-items: top;
+  justify-content: top;
+  vertical-align: top;
+  padding: 0rem 0.5rem;
+  margin: 0rem 0rem;
+  text-align: top;
+  justify-content: top;
+  align-items: top;
+  vertical-align: top;
+  }
+
+.header-row {
+  padding: 0.5rem 0.5rem;
+  margin: 0rem 0rem;
+  }
+
+.info-icon {
+color: var(--icon-color);
+justify-content: top;
+align-items: top;
+text-align: right;
+font-size: 2.4rem;
+}
+
+.progressbar {
+width: var(--progress-value); 
+height: 0.7rem;
+background-color: var(--progress-color);
+border: 1px solid #E0E6EB;
+}
+
+.w3-light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{
+    color:#000!important;
+    background-color:#f1f1f1!important;
+    border: 1px solid #E0E6EB;
+}
+
+.table-format {
+  padding: 0rem 0rem;
+  margin: 0rem 0rem;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
