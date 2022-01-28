@@ -83,10 +83,10 @@ over_theme = {'txc_inactive': 'white','menu_background':'purple','txc_active':'y
 font_fmt = {'font-class':'h2','font-size':'150%'}
 
 # display a horizontal version of the option bar
-op = hc.option_bar(menu_definition=option_data,title='Feedback Response',key='PrimaryOption',override_theme=over_theme,font_styling=font_fmt,horizontal_orientation=True)
+op = hc.option_bar(option_definition=option_data,title='Feedback Response',key='PrimaryOption',override_theme=over_theme,font_styling=font_fmt,horizontal_orientation=True)
 
 # display a version version of the option bar
-op2 = hc.option_bar(menu_definition=option_data,title='Feedback Response',key='PrimaryOption',override_theme=over_theme,font_styling=font_fmt,horizontal_orientation=False)
+op2 = hc.option_bar(option_definition=option_data,title='Feedback Response',key='PrimaryOption',override_theme=over_theme,font_styling=font_fmt,horizontal_orientation=False)
 
  ```
  - Added new component, progress_bar

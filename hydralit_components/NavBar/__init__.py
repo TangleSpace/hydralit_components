@@ -71,6 +71,44 @@ else:
 
 
 def nav_bar(menu_definition, first_select=0, key=None,home_name=None,login_name=None,override_theme=None, sticky_nav=True,force_value=None,use_animation=True,hide_streamlit_markers=True,sticky_mode='pinned', option_menu=False):
+    """
+    Creates a navigation bar using a list of dictionaries defining the icons and labels that should be displayed.
+    Fully suports Font Awesome and Bootstrap icons on or off line.
+
+    Parameters
+    -------------
+    menu_definition : List[Dict]
+        A list of dictionaries specifying the menu data, nested lists of dicts will create a submenu, for example
+        [{'icon': "far fa-copy", 'label':"Left End"},
+        {'id':'Copy','icon':"🐙",'label':"Copy"},
+        {'icon': "fa-solid fa-radar",'label':"Dropdown1", '
+        submenu':[{'id':' subid11','icon': "fa fa-paperclip", 
+        'label':"Sub-item 1"},{'id':'subid12','icon': "💀", 
+        'label':"Sub-item 2"},{'id':'subid13','icon': "fa fa-database", 'label':"Sub-item 3"}]}]
+
+    first_select: int (default 0)
+        The first selected entry when the navbar is created, uses a 2-digit reference, 10 is the first entry, so the second entry on the 3rd item of a submenu is 32.
+    key:
+        A unique key or name for this component
+    home_name:
+        A specific entry for the first or home entry, not required if not using the Hydralit package
+    override_theme: dict
+        Override the Streamlit theme applied to the navbar
+        {'txc_inactive': 'white','menu_background':'purple','txc_active':'yellow','option_active':'blue'}
+
+    sticky_nav: bool (default True)
+        Whether the navbar should be stuck to the top of the window
+    use_animation: bool (default True)
+        Use animation for nav item transitions or static
+    hide_streamlit_markers: bool (default True)
+        Hide the streamlit hamburger menu and footer label
+    sticky_mode: str (default 'pinned')
+        The sticky mode, if permenantly stuck to the top when srolling or not
+
+    Returns
+    ---------
+    id or label of selected entry
+    """
 
     first_select = math.floor(first_select/10)
 
