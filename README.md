@@ -30,7 +30,7 @@ Hydralit can be installed from PyPI:
 ```bash
 pip install -U hydralit_components
 ```
-# New in version 1.0.8 
+# New in version 1.0.9 
  - Added new component, info_card
  <p align="center">
 <img src="https://github.com/TangleSpace/hydralit_components/blob/main/resources/info_card.PNG?raw=true" title="InfoCard" alt="InfoCard", width="100%" height="100%">
