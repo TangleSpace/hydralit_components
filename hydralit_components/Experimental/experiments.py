@@ -81,7 +81,9 @@ def _add_injections(new_scripts,new_style_sheets,custom_html,inject_raw_script):
             hidden_header.append(new_script)
 
         if inject_raw_script is not None:           
-            hidden_header.append(soup.new_tag('script').append(inject_raw_script))
+            new_script = soup.new_tag('script')
+            new_script.append(inject_raw_script)
+            hidden_header.append(new_script)
         
         # add new stylesheets to heaeder
         for sct in new_style_sheets:
