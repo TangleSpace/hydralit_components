@@ -14,6 +14,9 @@ const InfoCard:React.VFC = () => {
   let title = renderData.args["title"];
   let contents = renderData.args['content'];
   let bar_value = renderData.args['bar_value'];
+  let title_text_size = renderData.args['title_text_size'];
+  let content_text_size = renderData.args['content_text_size'];
+  let icon_size = renderData.args['icon_size'];
   const comp_key = renderData.args["key"];
   let sttheme = renderData.theme;
   const override_theme = renderData.args['theme_override'];
@@ -49,6 +52,9 @@ const InfoCard:React.VFC = () => {
     ";--content-color: " + merged_theme.content_color + 
     ";--border-color: " + merged_theme.border_color + 
     ";--progress-color: " + merged_theme.progress_color + 
+    ";--titlesize: " + title_text_size + 
+    ";--contentsize: " + content_text_size + 
+    ";--iconsize: " + icon_size + 
     ";--progress-value: " + bar_value + "%" + 
     ";--title-color:" + merged_theme.title_color
     + ";--icon-color:" + merged_theme.icon_color + ";}";

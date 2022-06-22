@@ -13,7 +13,7 @@ else:
     _component_func = components.declare_component("info_card", url="http://localhost:3000")
 
 
-def info_card(title=None, content=None,sentiment=None,bar_value=None,theme_override=None,key=None):
+def info_card(title=None, content=None,sentiment=None,bar_value=None,icon_size="2.4rem",title_text_size="2.4rem",content_text_size="1.2rem",theme_override=None,key=None):
     """
     Creates an info card with a title, content text, display icon and an optional progress like bar, all with custom color and formatting.
     Fully suports Font Awesome and Bootstrap icons on or off line.
@@ -58,6 +58,6 @@ def info_card(title=None, content=None,sentiment=None,bar_value=None,theme_overr
         else:
             theme_override = None #{'bgcolor': None,'title_color': None,'content_color': None,'icon_color': None, 'icon': None}
 
-    component_value = _component_func(title=title, content=content,bar_value=bar_value, key=key,theme_override=theme_override)
+    component_value = _component_func(title=title, content=content,bar_value=bar_value,icon_size=icon_size,title_text_size=title_text_size,content_text_size=content_text_size, key=key,theme_override=theme_override)
 
     return component_value

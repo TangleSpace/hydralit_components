@@ -140,3 +140,4 @@ package-lock.json
 build_and_upload_to_twine*
 hydralit_components/*/frontend/node_modules/
 hydralit_components/*/frontend/build/
+comptests.py
